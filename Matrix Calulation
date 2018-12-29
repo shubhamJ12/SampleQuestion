@@ -1,0 +1,111 @@
+
+/*package whatever //do not write package name here */
+
+import java.util.*;
+import java.lang.*;
+import java.io.*;
+
+class Test {
+    public static void main ( String[] args ) {
+        int no_in_arary = 8;
+        int tipX = 4;
+        int tipY = 4;
+        int mX[] = {1,4,3,2,7,5,9,6 };
+        int m[] = new int[8];
+        System.out.println ( "dd" + m );
+        int[] mY = {1,2,3,6,5,4,9,8};
+        findVerticalSum ( mX, mY, no_in_arary, tipX, tipY );
+    }
+
+
+    public static void findVerticalSum ( int mX[], int mY[], int sum, int tipX, int tipY ) {
+        List <Integer> list = new ArrayList ( );
+        List <Integer> listY = new ArrayList ( );
+        List <Integer> finalList= new ArrayList ( );
+        List<Integer> oldXList=new ArrayList ( );
+        List<Integer> nwYList=new ArrayList ( );
+        List <Integer> finalListY = new ArrayList ( );
+        int postiveCountX = 0;
+        int negativeCount = 0;
+        for (int i = 0; i < sum; i++) {
+            int diff = mX[i] - mY[i];
+            if (diff >= 0) {
+                postiveCountX++;
+            } else {
+                negativeCount++;
+            }
+            list.add ( diff );
+            listY.add ( mY[i] - mX[i] );
+            nwYList.add (  mY[i] - mX[i] );
+            oldXList.add (diff );
+        }
+
+        list=Sort ( list );
+        listY=  Sort ( listY );
+        if (postiveCountX >= negativeCount) {
+            System.out.println (list );
+            System.out.println (listY );
+            for (int j = 0; j < tipX; j++) {
+                if (j > postiveCountX) {
+                    break;
+                }
+                finalList.add ( list.get ( j ) );
+
+            }
+
+            for (int j = 0; j < tipY; j++) {
+                System.out.println (sum);
+                if (finalList.size ()+j >=sum) {
+                    System.out.println ("ss");
+                    break;
+                }
+                System.out.println (listY.get ( j ));
+                finalListY.add ( listY.get ( j ) );
+
+            }
+        } else {
+            for (int j = 0; j < tipY; j++) {
+                if (j > postiveCountX) {
+                    break;
+                }
+                finalListY.add ( listY.get ( j ) );
+            }
+
+            for (int j = 0; j < tipX; j++) {
+//               / System.out.println (list.get ( j ) );
+                if (finalListY.size ()+j > sum) {
+                    System.out.println ("ss");
+                    break;
+                }
+                System.out.println (list.get ( j ) );
+                finalList .add ( list.get ( j ) );
+            }
+        }
+        System.out.println ( finalList.toString ( ) );
+        System.out.println ( finalListY.toString ( ) );
+        int sumValue=0;
+        for(Integer i:finalList){
+            list.indexOf (i);
+            sumValue=sumValue+mX[oldXList.indexOf ( i ) ];
+
+         }
+        System.out.println (sumValue );
+        for(Integer i:finalListY){
+            list.indexOf (i);
+            sumValue=sumValue+mY[nwYList.indexOf ( i ) ];
+
+        }
+        System.out.println (sumValue );
+
+
+    }
+
+    public static List <Integer> Sort ( List <Integer> sort ) {
+        System.out.println (sort );
+        Collections.sort ( sort );
+        Collections.reverse ( sort );
+        return sort;
+
+
+    }
+}
