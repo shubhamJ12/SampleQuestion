@@ -1,4 +1,4 @@
-package com.corda.backend.domain.enumeration;
+
 /*package whatever //do not write package name here */
 
 import java.util.*;
@@ -7,21 +7,25 @@ import java.io.*;
 
 class Test {
     public static void main ( String[] args ) {
-        int m[][] = new int[10][10];
-        System.out.println ("dd"+m );
+        int m[][] = new int[10][30];
+
         int[] subset = {25, 14, 56, 15, 36, 56, 77, 18, 29, 49};
         findVerticalSum ( m, 29, 10, subset );
     }
 
 
     public static void findVerticalSum ( int m[][], int sum, int n, int subset[] ) {
-        for (int i = 0; i < n; i++) {
+        for (int i = 0; i <=sum; i++) {
             m[0][i] = 0;
+
+        }
+        for (int i = 0; i < n; i++) {
             m[i][0] = 1;
+
         }
         for (int i = 1; i < n; i++) {
-            for (int j = 1; j <= sum; j++) {
-                if (j > subset[i - 1]) {
+            for (int j = 1; j <=sum; j++) {
+                if (j <subset[i - 1]) {
                     System.out.println (subset[i-1] );
                         m[i][j] = m[i - 1][j];
                 } else {
@@ -37,7 +41,10 @@ class Test {
 
 
         }
+        for (int i = 1; i < n; i++) {
+            for (int j = 1; j <=sum; j++) {
 
-        System.out.println (subset );
+                System.out.println ( "the output array is " +i+j+"array value" +m[i][j] );
+            }}
     }
 }
